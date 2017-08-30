@@ -27,7 +27,8 @@ RUN rm /etc/nginx/sites-enabled/default
 RUN ln -s /code/conf/nginx-app.conf /etc/nginx/sites-enabled/
 
 # Add source code.
-ADD ../core/src /code/
+ADD ./ces-videos/core/src /code/
 
 # Run script file.
-CMD ./run.sh
+CMD ["python", "manage.py", "migrate"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
